@@ -1,0 +1,35 @@
+{
+  "lsp": {
+    "biome": {
+      "settings": {
+        "require_config_file": true
+      }
+    }
+  },
+  "languages": {
+    "TypeScript": {
+      "format_on_save": "on",
+      "formatter": [
+        { "code_action": "source.fixAll.biome" },
+        { "code_action": "source.organizeImports.biome" },
+        { "language_server": { "name": "biome" } }
+      ]
+    },
+    "JavaScript": {
+      "format_on_save": "on",
+      "formatter": [
+        { "code_action": "source.fixAll.biome" },
+        { "code_action": "source.organizeImports.biome" },
+        { "language_server": { "name": "biome" } }
+      ]
+    },
+    "JSON": {
+      "format_on_save": "on",
+      "formatter": [{ "language_server": { "name": "biome" } }]
+    },
+    "JSONC": {
+      "format_on_save": "on",
+      "formatter": [{ "language_server": { "name": "biome" } }]
+    }
+  }
+}
