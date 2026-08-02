@@ -13,6 +13,7 @@
 		"start:prod": "node dist/main",
 		"db:start:local": "docker compose up",
 		"db:ui": "drizzle-kit studio",
+		"db:generate": "npx drizzle-kit generate",
 		"format": "biome format --write .",
 		"check": "biome check .",
 		"lint": "biome lint .",
