@@ -1,7 +1,7 @@
 CREATE TYPE "public"."job_status" AS ENUM('idle', 'pending', 'finished', 'failed');--> statement-breakpoint
 CREATE TABLE "recordings" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"reflection_id" text NOT NULL,
+	"reflection_id" uuid NOT NULL,
 	"s3_key" text NOT NULL,
 	"duration_ms" integer NOT NULL,
 	"mime_type" text,
@@ -25,7 +25,7 @@ CREATE TABLE "reflections" (
 --> statement-breakpoint
 CREATE TABLE "reports" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"reflection_id" text NOT NULL,
+	"reflection_id" uuid NOT NULL,
 	"title" text,
 	"summary" text,
 	"dayScore" smallint,
@@ -76,12 +76,14 @@ CREATE TABLE "session" (
 --> statement-breakpoint
 CREATE TABLE "user" (
 	"id" text PRIMARY KEY NOT NULL,
+	"telegram_id" text,
 	"name" text NOT NULL,
 	"email" text NOT NULL,
 	"email_verified" boolean DEFAULT false NOT NULL,
 	"image" text,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL,
+	CONSTRAINT "user_telegram_id_unique" UNIQUE("telegram_id"),
 	CONSTRAINT "user_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint

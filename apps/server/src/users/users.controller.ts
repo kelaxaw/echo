@@ -7,8 +7,8 @@ import {
 } from "@thallesp/nestjs-better-auth";
 import type { auth } from "src/auth/auth";
 
-import type { UserSignInDto, UserSignUpDto } from "./dto/user.dto";
-import type { UsersService } from "./users.service";
+import { UserSignInDto, UserSignUpDto } from "./dto/user.dto";
+import { UsersService } from "./users.service";
 
 @ApiTags("users")
 @Controller("users")
