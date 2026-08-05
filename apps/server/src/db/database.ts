@@ -1,18 +1,15 @@
 import { drizzle } from "drizzle-orm/node-postgres";
-import * as authSchema from "../auth/auth.schema";
-import * as recordsSchema from "./schemas/recordings";
-import * as reflectionsSchema from "./schemas/reflections";
-import * as reportsSchema from "./schemas/reports";
+import { Pool } from "pg";
+import { SCHEMA } from "./schema";
 
-const databaseUrl = process.env.DATABASE_URL;
+const DATABASE_URL = process.env.DATABASE_URL;
 
-if (!databaseUrl) throw new Error("DATABASE_URL is undefined");
+if (!DATABASE_URL) throw new Error("DATABASE_URL is undefined");
 
-const schema = {
-	...recordsSchema,
-	...reflectionsSchema,
-	...reportsSchema,
-	...authSchema,
-};
+export const pool = new Pool({
+	connectionString: DATABASE_URL,
+	statement_timeout: 30_000,
+	query_timeout: 30_000,
+});
 
-export const db = drizzle(databaseUrl, { schema });
+export const db = drizzle(pool, { schema: SCHEMA });

@@ -19,7 +19,7 @@ export const reportsTable = pgTable(
 	{
 		id: uuid().defaultRandom().primaryKey(),
 
-		reflectionId: text("reflection_id")
+		reflectionId: uuid("reflection_id")
 			.notNull()
 			.references(() => reflectionsTable.id, { onDelete: "cascade" }),
 
